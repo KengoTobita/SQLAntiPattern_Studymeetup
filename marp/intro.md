@@ -1,0 +1,99 @@
+---
+marp: true
+theme: default
+size: 16:9
+paginate: true
+headingDivider: 2
+backgroundImage: url('https://marp.app/assets/hero-background.svg')
+header: SQLアンチパターン
+footer: GIBJapan - TOBITA Kengo
+---
+
+<!-- intro -->
+
+### SQLアンチパターン  
+#### ハンズオン輪読会
+
+<!-- --- -->
+
+## 📖 このスライドの目的
+
+- 書籍「SQLアンチパターン」の理解を深める
+- 実際に手を動かして体感する
+- パターン／アンチパターンの本質を掴む
+
+<!-- --- -->
+
+## 📚 書籍紹介
+**書名**：SQLアンチパターン  
+**著者**：ビル・カロウザース（Bill Karwin）  
+**出版社**：オライリー・ジャパン  
+**対象読者**：
+- SQL初心者～中級者
+- より良いDB設計を目指すエンジニア
+- アプリとDBの橋渡しに悩む方
+
+<!-- --- -->
+
+## アンチパターンとは……
+ソフトウェア開発におけるアンチパターン (英: anti-pattern) とは、必ず否定的な結果に導く、しかも一般的に良く見られる開発方式を記述する文献形式を言う。その内容は、基本的には、否定的な開発方式の一般的な形、主原因、症状、重症化した時の結果、そしてその対策の記述からなる。
+デザインパターンを補完・拡張する関係にあるもので、多くの開発者が繰り返すソフトウェア開発の錯誤を明確に定義することにより、開発や導入を阻害する一般的で**再発性の高い障害要因の検知と克服**を支援することが目的である。(from Wikipedia)
+  　　
+  超訳ｰ>**やべぇ設計あるある**
+
+<!-- --- -->
+
+## 🧠 書籍の構成（ざっくり）
+
+1. **論理設計のアンチパターン**  
+2. **物理設計のアンチパターン**  
+3. **クエリのアンチパターン**  
+4. **アプリケーション開発のアンチパターン**
+
+<!-- --- -->
+
+## 🛠️ ハンズオン環境について
+- Docker Composeを用意しています  
+- PostgreSQL + Fakerアプリによるデータ生成環境  
+- クエリ実行・実験・失敗して学ぶ設計！
+
+<!-- --- -->
+
+## サンプルデータベース
+バグ報告アプリでの使用を想定したDB
+
+<table>
+  <tr>
+    <th>データベース名</th>
+    <td>antipat</td>
+  </tr>
+  <tr>
+    <th>テーブル作成SQLファイル</th>
+    <td>./init/setup.sql</td>
+  </tr>
+  <tr>
+    <th>ダミーデータ作成関連</th>
+    <td>./app</td>
+  </tr>
+  <tr>
+    <th>ER図.md</th>
+    <td>./marmaid/sample_database.mmd</td>
+  </tr>
+  <tr>
+    <th>ER図.png</th>
+    <td>./marmaid/erDiagram.png</td>
+  </tr>
+  <tr>
+    <th>このスライド</th>
+    <td>./marp/part_{num_of_chapter}.md</td>
+  </tr>
+</table>
+
+
+## サンプルデータベース テーブル構成
+
+![height:500](/image/erDiagram.png)
+
+<!-- --- -->
+## Dockercompose.ymlについて
+![height:500](/image/container.png)

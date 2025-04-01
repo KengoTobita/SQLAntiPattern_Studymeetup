@@ -1,0 +1,75 @@
+erDiagram
+
+  Accounts {
+    int account_id PK
+    string account_name
+    string first_name
+    string last_name
+    string email
+    char password_hash
+    bytea portrait_image
+    numeric hourly_rate
+  }
+
+  BugStatus {
+    string status PK
+  }
+
+  Bugs {
+    int bug_id PK
+    date date_reported
+    string summary
+    string description
+    string resolution
+    bigint reported_by FK
+    bigint assigned_to FK
+    bigint verified_by FK
+    string status FK
+    string priority
+    numeric hours
+  }
+
+  Comments {
+    int comment_id PK
+    bigint bug_id FK
+    bigint author FK
+    timestamp comment_date
+    text comment
+  }
+
+  Screenshots {
+    bigint bug_id PK, FK
+    bigint image_id PK
+    bytea screenshot_image
+    string caption
+  }
+
+  Tags {
+    bigint bug_id PK, FK
+    string tag PK
+  }
+
+  Products {
+    int product_id PK
+    string product_name
+  }
+
+  BugsProducts {
+    bigint bug_id PK, FK
+    bigint product_id PK, FK
+  }
+
+  %% Relationships
+  Bugs ||--o{ Accounts : "reported_by"
+  Bugs ||--o{ Accounts : "assigned_to"
+  Bugs ||--o{ Accounts : "verified_by"
+  Bugs ||--|| BugStatus : "status"
+
+  Comments }o--|| Bugs : "bug_id"
+  Comments }o--|| Accounts : "author"
+
+  Screenshots }o--|| Bugs : "bug_id"
+  Tags }o--|| Bugs : "bug_id"
+
+  BugsProducts }o--|| Bugs : "bug_id"
+  BugsProducts }o--|| Products : "product_id"

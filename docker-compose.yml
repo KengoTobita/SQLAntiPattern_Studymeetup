@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:16
+    container_name: sql_study_postgres-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: antipat
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - ./sql_files:/sql_files
+
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "user", "-d", "antipat"]
+      interval: 5s
+      retries: 5
+
+    networks:
+      - SQLstudy_fakerApp_network
+
+  faker-app:
+    build:
+      context: ./pyapp
+    container_name: sql_study_fakerApp
+    depends_on:
+        db:
+          condition: service_healthy
+    volumes:
+      - ./pyapp:/app
+    working_dir: /app
+    networks:
+      - SQLstudy_fakerApp_network
+
+networks:
+  SQLstudy_fakerApp_network:
+    driver: bridge

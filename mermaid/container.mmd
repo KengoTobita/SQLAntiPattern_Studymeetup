@@ -1,0 +1,8 @@
+graph TD
+    subgraph SQLstudy_fakerApp_network
+        faker-app[faker-app container]
+        db[PostgreSQL container]
+    end
+
+    faker-app -->|connects to| db
+    db -->|exposes| host5432[(antipat_host:5432)]
