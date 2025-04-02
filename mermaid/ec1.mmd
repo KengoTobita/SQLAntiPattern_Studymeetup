@@ -1,0 +1,63 @@
+erDiagram
+    users ||--o{ addresses : has
+    users ||--o{ orders : places
+    orders ||--o{ order_items : contains
+    order_items }o--|| products : includes
+    products }o--|| categories : categorized_in
+    categories ||--o{ categories : parent
+    products ||--o{ product_attributes : has
+
+    users {
+        int id PK
+        text name
+        text email
+        timestamp created_at
+    }
+
+    addresses {
+        int id PK
+        int user_id FK
+        text address_line
+        text city
+        text postal_code
+        text country
+    }
+
+    categories {
+        int id PK
+        text name
+        int parent_id FK
+    }
+
+    products {
+        int id PK
+        text name
+        text description
+        numeric price
+        int category_id FK
+        text tags
+        text product_type
+    }
+
+    product_attributes {
+        int id PK
+        int product_id FK
+        text attribute_name
+        text attribute_value
+    }
+
+    orders {
+        int id PK
+        int user_id FK
+        int address_id FK
+        text status
+        timestamp created_at
+    }
+
+    order_items {
+        int id PK
+        int order_id FK
+        int product_id FK
+        int quantity
+        numeric unit_price
+    }

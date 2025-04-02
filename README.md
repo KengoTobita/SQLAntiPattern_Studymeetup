@@ -34,7 +34,7 @@
 ```
 
 ## 参考書籍
-<img src=https://www.oreilly.co.jp/books/images/picture_large978-4-87311-589-4.jpeg width=300>
+<img src=https://www.oreilly.co.jp/books/images/picture_large978-4-87311-589-4.jpeg width=200>
 
 公式サイトでSQLファイルなどの参考コードなどがダウンロード可能です。<br>
 URL: https://www.oreilly.co.jp/books/9784873115894/
@@ -45,8 +45,13 @@ URL: https://www.oreilly.co.jp/books/9784873115894/
 ```
 User: user 
 Pass: pass 
-DB: antipat
+Port: 5432
 ```
+|データベース名|内容|
+|-|-|
+|antipat|書籍公式のサンプルデータベース|
+|ec1|第一章 前半まとめクイズ用|
+
 ## 実行手順
 私のPCはUbuntuなのでMac特有の事柄は感知しません。
 
@@ -64,7 +69,7 @@ DB: antipat
 
     *SQLファイル実行(シェルで)*
     ```bash
-    psql -f {SQLファイル} -U user -d antipat 
+    psql -f {SQLファイル} -U user -d {DB名} 
     ```
     *SQLファイル実行(PostgreSQLインタラクティブシェルで)*
     ```sql
@@ -72,7 +77,7 @@ DB: antipat
     ```
     *PosgreSQLインタラクティブシェル*
     ```bash
-    psql -U user -d antipat
+    psql -U user -d {DB名}
     ```
 
     | コマンド   | 説明                                      |
