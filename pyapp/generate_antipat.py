@@ -1,18 +1,19 @@
+import os
+import random
 import psycopg2
 from faker import Faker
-import random
 
 fake = Faker()
 
 # Dockercomposeで立ち上げたDBに接続するためのリトライ処理
-conn = psycopg2.connect(
-        dbname="antipat",
-        user="user",
-        password="pass",
-        host="db",
-        port="5432"
-        )
 
+conn = psycopg2.connect(
+    host=os.getenv("DB_HOST"),
+    dbname=os.getenv("DB_NAME"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASS"),
+    port=os.getenv("DB_PORT")
+)
 cur = conn.cursor()
 
 # ----------------------------------------

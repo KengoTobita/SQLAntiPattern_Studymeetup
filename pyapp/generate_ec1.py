@@ -1,16 +1,17 @@
-import psycopg2
-from faker import Faker
+import os
 import random
 from typing import List, Optional, Tuple
+import psycopg2
+from faker import Faker
 
 fake: Faker = Faker()
 
 conn = psycopg2.connect(
-    dbname="ec1",
-    user="user",
-    password="pass",
-    host="localhost",
-    port="5432"
+    host=os.getenv("DB_HOST"),
+    dbname=os.getenv("DB_NAME"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASS"),
+    port=os.getenv("DB_PORT")
 )
 cur = conn.cursor()
 

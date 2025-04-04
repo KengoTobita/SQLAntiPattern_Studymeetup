@@ -9,7 +9,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # アプリ・スクリプトをコピー
 COPY . .
 
-# wait-for-postgres に実行権限を付与
-RUN chmod +x /app/wait_for_postgres.sh
 
 # ENTRYPOINT と CMD は docker-compose 側で指定
